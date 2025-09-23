@@ -113,9 +113,14 @@ body {
     color: rgb(77, 77, 77);
 }
 
-#menu {
+#hire {
     width: 20%;
     height: 100%;
+    font-weight: 400;
+}
+#hire h2{
+    font-weight: 1000;
+    font-family: sans-serif
 }
 
 #intro{
