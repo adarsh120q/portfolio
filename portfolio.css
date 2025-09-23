@@ -130,6 +130,9 @@ body {
     text-decoration: none;
     color: rgb(150, 107, 42);
 }
+#hire h2 a:hover{
+    color: rgb(224, 135, 0);
+}
 
 #intro{
     margin-top: 100px;
