@@ -12,7 +12,6 @@ body {
     flex-direction: column; 
     height: 6000px;
     background-attachment: fixed;
-    justify-content: center;
 
     /* min-height: 100vh; */
 }
