@@ -46,23 +46,71 @@
 
         </div> 
     </div> 
-    <div id="about"> 
-        <div id="photo_description"> 
-            <div id="photo"> 
-                <img src="Picsart_25-09-21_10-36-28-087.png" alt="Adarsh Singh's image" > 
-            </div> 
-            <div id="description"> 
-                <p>Hello! I'm Adarsh Singh, a passionate developer who loves building cool things.</p> 
-                <h2>Welcome to my Portfolio!</h2> 
-                <p>Computer Science graduate skilled in Python, Machine Learning, and Full-Stack Development. Experienced in building AI chatbots, predictive ML models, and scalable web apps using Flask and React. Seeking opportunities in Data Science, ML Engineering, or Full-Stack Development.</p> 
+    <div class="black-back">
+        <div id="about"> 
+            <div id="photo_description"> 
+                <div id="photo"> 
+                    <img src="Picsart_25-09-21_10-36-28-087.png" alt="Adarsh Singh's image" > 
+                </div> 
+                <div id="description"> 
+                    <p>Hello! I'm Adarsh Singh, a passionate developer who loves building cool things.</p> 
+                    <h2>Welcome to my Portfolio!</h2> 
+                    <p>Computer Science graduate skilled in Python, Machine Learning, and Full-Stack Development. Experienced in building AI chatbots, predictive ML models, and scalable web apps using Flask and React. Seeking opportunities in Data Science, ML Engineering, or Full-Stack Development.</p> 
+                </div> 
             </div> 
         </div> 
-    </div> 
-    <div id="skills"> 
-        <div> 
-            <h1>Skills</h1> 
+        <div id="skills"> 
+            <h1>Skills</h1>
+            <div class="skills-bubbles">
+                <div class="bubble" style="box-shadow: inset 0 5px 15px #3776AB">
+                    <i class="fa-brands fa-python" style="color:#3776AB"></i>
+                    <span>Python</span>
+                </div>
+                <div class="bubble" style="box-shadow: inset 0 5px 15px #61DAFB">
+                    <i class="fa-brands fa-react" style="color:#61DAFB"></i>
+                    <span>React.js</span>
+                </div>
+                <div class="bubble" style="box-shadow: inset 0 5px 15px #4DB33D">
+                    <i class="fa-solid fa-database" style="color:#4DB33D"></i>
+                    <span>SQL</span>
+                </div>
+                <div class="bubble" style="box-shadow: inset 0 5px 15px #F05032">
+                    <i class="fa-brands fa-git-alt" style="color:#F05032"></i>
+                    <span>Git & GitHub</span>
+                </div>
+                <div class="bubble" style="box-shadow: inset 0 5px 15px #4479A1">
+                    <i class="fa-solid fa-database" style="color:#4479A1"></i>
+                    <span>MySQL</span>
+                </div>
+                <div class="bubble" style="box-shadow: inset 0 5px 15px #00599C">
+                    <i class="fa-solid fa-code" style="color:#00599C"></i>
+                    <span>C++</span>
+                </div>
+                <div class="bubble" style="box-shadow: inset 0 5px 15px #092E20">
+                    <i class="fa-brands fa-python" style="color:#092E20"></i>
+                    <span>Django</span>
+                </div>
+                <div class="bubble" style="box-shadow: inset 0 5px 15px #E34F26">
+                    <i class="fa-brands fa-html5" style="color:#E34F26"></i>
+                    <span>HTML</span>
+                </div>
+                <div class="bubble" style="box-shadow: inset 0 5px 15px #1572B6">
+                    <i class="fa-brands fa-css3-alt" style="color:#1572B6"></i>
+                    <span>CSS</span>
+                </div>
+                <div class="bubble" style="box-shadow: inset 0 5px 15px #F7DF1E">
+                    <i class="fa-brands fa-js-square" style="color:#F7DF1E"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="bubble" style="box-shadow: inset 0 5px 15px #FF6F61">
+                    <i class="fa-solid fa-network-wired" style="color:#FF6F61"></i>
+                    <span>DSA</span>
+                </div>
+
+            </div>
+
         </div> 
-    </div> 
+    </div>
     <div id="projects">
         <h1>Projects</h1>
     </div> 
@@ -158,6 +206,58 @@
 
     setInterval(changeTitle, 3000);
 
+    // Floating bubbles animation
+const bubbles = document.querySelectorAll('.bubble');
+const section = document.querySelector('.skills-bubbles');
+const bounds = section.getBoundingClientRect();
+
+let bubbleData = [];
+
+bubbles.forEach(b => {
+  let size = 100;
+  bubbleData.push({
+    el: b,
+    x: Math.random() * (bounds.width - size),
+    y: Math.random() * (bounds.height - size),
+    dx: (Math.random() - 0.5) * 3,
+    dy: (Math.random() - 0.5) * 3,
+    r: size / 2
+  });
+});
+
+function animateBubbles() {
+  bubbleData.forEach(b => {
+    if (b.el.matches(':hover')) return; // freeze on hover
+
+b.x += b.dx;
+b.y += b.dy;
+
+// Keep fully inside section
+if (b.x < 0) { b.x = 0; b.dx *= -1; }
+if (b.y < 0) { b.y = 0; b.dy *= -1; }
+if (b.x > bounds.width - b.r*2) { b.x = bounds.width - b.r*2; b.dx *= -1; }
+if (b.y > bounds.height - b.r*2) { b.y = bounds.height - b.r*2; b.dy *= -1; }
+
+
+    b.el.style.transform = `translate(${b.x}px, ${b.y}px)`;
+  });
+
+  // collision detection
+  for (let i = 0; i < bubbleData.length; i++) {
+    for (let j = i + 1; j < bubbleData.length; j++) {
+      let a = bubbleData[i], c = bubbleData[j];
+      let dx = a.x - c.x, dy = a.y - c.y;
+      let dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < a.r + c.r) {
+        [a.dx, c.dx] = [c.dx, a.dx];
+        [a.dy, c.dy] = [c.dy, a.dy];
+      }
+    }
+  }
+
+  requestAnimationFrame(animateBubbles);
+}
+animateBubbles();
 
 
     </script> 

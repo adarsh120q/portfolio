@@ -130,7 +130,7 @@ body {
     text-align: center;
     border: 2px solid rgb(0, 0, 0);
     border-radius: 10px;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 #hire h2 a{
     display: block;
@@ -145,8 +145,10 @@ body {
     color: #000;
 }
 #hire h2:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     color: rgb(0, 0, 0);
-    border: 4px solid rgb(0, 0, 0);
+    /* border: 4px solid rgb(0, 0, 0); */
 }
 
 #intro{
@@ -242,17 +244,21 @@ body {
     }
 }
 
-
+.black-back{
+    background: rgba(0, 0, 0, 0.6);
+    margin-top: 60px;
+    height: 1800px;
+}
 #about{
     width: 100%;
-    height: 940px;
+    height: 50%;
     align-content: center;
 }
 
 #photo_description {
-    background: rgba(0, 0, 0, 0.6);
+    
     width: 100%;
-    height: 800px;
+    height: 100%;
              
     display: flex;            
     align-items: center;      
@@ -312,12 +318,60 @@ h1 {
 
 #skills{
     width: 100%;
-    height: 940px;
+    height: 50%;
     align-content: center;
     justify-items: center;
-    background-color: rgba(72, 146, 146, 0.8);
+    text-align: center;
     backdrop-filter: blur(10px);
 }
+#skills h1{
+    color: rgb(31, 85, 72);
+    font-family:'Courier New', Courier, monospace;
+    background-color: #ddd;
+    border-radius: 50px;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.skills-bubbles {
+    position: relative;
+    width: 100%;
+    height: 91%; /* adjust */
+    overflow: hidden; /* keeps bubbles inside visually */
+}
+
+.bubble {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    transition: 0.3s;
+}
+
+.bubble i {
+    font-size: 32px;
+}
+
+.bubble span {
+    font-size: 14px;
+    margin-top: 5px;
+    color: #333;
+}
+
+.bubble:hover {
+    transform: scale(1.5);
+    z-index: 10;
+    width: 200px;
+    height: 200px;
+}
+
 
 #projects{
     width: 100%;
